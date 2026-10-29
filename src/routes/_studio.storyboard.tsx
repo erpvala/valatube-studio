@@ -11,20 +11,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useLocalState } from "@/lib/local-store";
+import { SCENES, type Scene } from "@/data/storyboard";
 
 export const Route = createFileRoute("/_studio/storyboard")({
   head: pageHead("Storyboard Studio", "Plan scenes, narration, shots and assets."),
   component: Storyboard,
 });
 
-export type Scene = { id: string; title: string; description: string; narration: string; visual: string; shot: string; duration: number; asset: number };
-export const SCENES: Scene[] = [
-  { id: "s1", title: "Cold open", description: "Stack of laptops on desk", narration: "You're probably about to overspend…", visual: "Slow push-in, red rim light", shot: "Close-up", duration: 6, asset: 0 },
-  { id: "s2", title: "Intro", description: "Host to camera", narration: "I tested 23 laptops this year…", visual: "Two-camera setup", shot: "Medium", duration: 18, asset: 0 },
-  { id: "s3", title: "Processor", description: "Spec graphic overlay", narration: "Processor: what the numbers mean.", visual: "Animated chart", shot: "Screen capture", duration: 95, asset: 3 },
-  { id: "s4", title: "Battery test", description: "Timelapse of battery drain", narration: "How to read real-world numbers.", visual: "Timelapse", shot: "Wide", duration: 70, asset: 0 },
-  { id: "s5", title: "Outro & CTA", description: "Host with checklist", narration: "Grab the free checklist…", visual: "End screen layout", shot: "Medium", duration: 20, asset: 0 },
-];
 const SHOTS = ["Wide", "Medium", "Close-up", "Overhead", "Screen capture", "B-roll"];
 
 function Storyboard() {

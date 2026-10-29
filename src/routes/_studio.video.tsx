@@ -10,7 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
 import { useLocalState } from "@/lib/local-store";
-import { SCENES, type Scene } from "./_studio.storyboard";
+import { SCENES, type Scene } from "@/data/storyboard";
 
 export const Route = createFileRoute("/_studio/video")({
   head: pageHead("AI Video Studio", "Video concepts, scene sequences and job queue (demo)."),
@@ -38,7 +38,6 @@ function VideoStudio() {
         <div className="space-y-4">
           <Panel title="Preview">
             <div className={`relative mx-auto overflow-hidden rounded-lg bg-elevated ${ratio === "9:16" ? "aspect-[9/16] max-w-xs" : ratio === "1:1" ? "aspect-square max-w-md" : "aspect-video"}`}>
-              {scenes[active] && <img src={undefined} alt="" className="hidden" />}
               <Thumb index={scenes[active]?.asset ?? 0} className="absolute inset-0 aspect-auto size-full rounded-none" />
               <div className="absolute inset-x-0 bottom-0 bg-background/80 p-3 text-sm">“{scenes[active]?.narration}”</div>
               <button onClick={() => Unavailable("Video playback")} aria-label="Play" className="absolute left-1/2 top-1/2 grid size-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-primary text-primary-foreground shadow-glow"><Play className="size-6" /></button>
