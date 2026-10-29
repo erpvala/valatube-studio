@@ -13,16 +13,22 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as StudioRouteImport } from './routes/_studio'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as StudioCalendarRouteImport } from './routes/_studio.calendar'
 import { Route as StudioChannelsRouteImport } from './routes/_studio.channels'
 import { Route as StudioDashboardRouteImport } from './routes/_studio.dashboard'
 import { Route as StudioEditorRouteImport } from './routes/_studio.editor'
 import { Route as StudioIdeasRouteImport } from './routes/_studio.ideas'
 import { Route as StudioImagesRouteImport } from './routes/_studio.images'
+import { Route as StudioPublishingRouteImport } from './routes/_studio.publishing'
 import { Route as StudioResearchRouteImport } from './routes/_studio.research'
 import { Route as StudioScriptsRouteImport } from './routes/_studio.scripts'
+import { Route as StudioSeoRouteImport } from './routes/_studio.seo'
+import { Route as StudioShortsRouteImport } from './routes/_studio.shorts'
 import { Route as StudioStoryboardRouteImport } from './routes/_studio.storyboard'
+import { Route as StudioThumbnailsRouteImport } from './routes/_studio.thumbnails'
 import { Route as StudioVideoRouteImport } from './routes/_studio.video'
 import { Route as StudioVoiceRouteImport } from './routes/_studio.voice'
+import { Route as StudioWorkflowsRouteImport } from './routes/_studio.workflows'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -42,6 +48,11 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
+} as any)
+const StudioCalendarRoute = StudioCalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
+  getParentRoute: () => StudioRoute,
 } as any)
 const StudioChannelsRoute = StudioChannelsRouteImport.update({
   id: '/channels',
@@ -68,6 +79,11 @@ const StudioImagesRoute = StudioImagesRouteImport.update({
   path: '/images',
   getParentRoute: () => StudioRoute,
 } as any)
+const StudioPublishingRoute = StudioPublishingRouteImport.update({
+  id: '/publishing',
+  path: '/publishing',
+  getParentRoute: () => StudioRoute,
+} as any)
 const StudioResearchRoute = StudioResearchRouteImport.update({
   id: '/research',
   path: '/research',
@@ -78,9 +94,24 @@ const StudioScriptsRoute = StudioScriptsRouteImport.update({
   path: '/scripts',
   getParentRoute: () => StudioRoute,
 } as any)
+const StudioSeoRoute = StudioSeoRouteImport.update({
+  id: '/seo',
+  path: '/seo',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioShortsRoute = StudioShortsRouteImport.update({
+  id: '/shorts',
+  path: '/shorts',
+  getParentRoute: () => StudioRoute,
+} as any)
 const StudioStoryboardRoute = StudioStoryboardRouteImport.update({
   id: '/storyboard',
   path: '/storyboard',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioThumbnailsRoute = StudioThumbnailsRouteImport.update({
+  id: '/thumbnails',
+  path: '/thumbnails',
   getParentRoute: () => StudioRoute,
 } as any)
 const StudioVideoRoute = StudioVideoRouteImport.update({
@@ -93,36 +124,53 @@ const StudioVoiceRoute = StudioVoiceRouteImport.update({
   path: '/voice',
   getParentRoute: () => StudioRoute,
 } as any)
+const StudioWorkflowsRoute = StudioWorkflowsRouteImport.update({
+  id: '/workflows',
+  path: '/workflows',
+  getParentRoute: () => StudioRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/calendar': typeof StudioCalendarRoute
   '/channels': typeof StudioChannelsRoute
   '/dashboard': typeof StudioDashboardRoute
   '/editor': typeof StudioEditorRoute
   '/ideas': typeof StudioIdeasRoute
   '/images': typeof StudioImagesRoute
+  '/publishing': typeof StudioPublishingRoute
   '/research': typeof StudioResearchRoute
   '/scripts': typeof StudioScriptsRoute
+  '/seo': typeof StudioSeoRoute
+  '/shorts': typeof StudioShortsRoute
   '/storyboard': typeof StudioStoryboardRoute
+  '/thumbnails': typeof StudioThumbnailsRoute
   '/video': typeof StudioVideoRoute
   '/voice': typeof StudioVoiceRoute
+  '/workflows': typeof StudioWorkflowsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/calendar': typeof StudioCalendarRoute
   '/channels': typeof StudioChannelsRoute
   '/dashboard': typeof StudioDashboardRoute
   '/editor': typeof StudioEditorRoute
   '/ideas': typeof StudioIdeasRoute
   '/images': typeof StudioImagesRoute
+  '/publishing': typeof StudioPublishingRoute
   '/research': typeof StudioResearchRoute
   '/scripts': typeof StudioScriptsRoute
+  '/seo': typeof StudioSeoRoute
+  '/shorts': typeof StudioShortsRoute
   '/storyboard': typeof StudioStoryboardRoute
+  '/thumbnails': typeof StudioThumbnailsRoute
   '/video': typeof StudioVideoRoute
   '/voice': typeof StudioVoiceRoute
+  '/workflows': typeof StudioWorkflowsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -130,16 +178,22 @@ export interface FileRoutesById {
   '/_studio': typeof StudioRouteWithChildren
   '/login': typeof LoginRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_studio/calendar': typeof StudioCalendarRoute
   '/_studio/channels': typeof StudioChannelsRoute
   '/_studio/dashboard': typeof StudioDashboardRoute
   '/_studio/editor': typeof StudioEditorRoute
   '/_studio/ideas': typeof StudioIdeasRoute
   '/_studio/images': typeof StudioImagesRoute
+  '/_studio/publishing': typeof StudioPublishingRoute
   '/_studio/research': typeof StudioResearchRoute
   '/_studio/scripts': typeof StudioScriptsRoute
+  '/_studio/seo': typeof StudioSeoRoute
+  '/_studio/shorts': typeof StudioShortsRoute
   '/_studio/storyboard': typeof StudioStoryboardRoute
+  '/_studio/thumbnails': typeof StudioThumbnailsRoute
   '/_studio/video': typeof StudioVideoRoute
   '/_studio/voice': typeof StudioVoiceRoute
+  '/_studio/workflows': typeof StudioWorkflowsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -147,47 +201,65 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/reset-password'
+    | '/calendar'
     | '/channels'
     | '/dashboard'
     | '/editor'
     | '/ideas'
     | '/images'
+    | '/publishing'
     | '/research'
     | '/scripts'
+    | '/seo'
+    | '/shorts'
     | '/storyboard'
+    | '/thumbnails'
     | '/video'
     | '/voice'
+    | '/workflows'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/login'
     | '/reset-password'
+    | '/calendar'
     | '/channels'
     | '/dashboard'
     | '/editor'
     | '/ideas'
     | '/images'
+    | '/publishing'
     | '/research'
     | '/scripts'
+    | '/seo'
+    | '/shorts'
     | '/storyboard'
+    | '/thumbnails'
     | '/video'
     | '/voice'
+    | '/workflows'
   id:
     | '__root__'
     | '/'
     | '/_studio'
     | '/login'
     | '/reset-password'
+    | '/_studio/calendar'
     | '/_studio/channels'
     | '/_studio/dashboard'
     | '/_studio/editor'
     | '/_studio/ideas'
     | '/_studio/images'
+    | '/_studio/publishing'
     | '/_studio/research'
     | '/_studio/scripts'
+    | '/_studio/seo'
+    | '/_studio/shorts'
     | '/_studio/storyboard'
+    | '/_studio/thumbnails'
     | '/_studio/video'
     | '/_studio/voice'
+    | '/_studio/workflows'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -227,6 +299,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_studio/calendar': {
+      id: '/_studio/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof StudioCalendarRouteImport
+      parentRoute: typeof StudioRoute
+    }
     '/_studio/channels': {
       id: '/_studio/channels'
       path: '/channels'
@@ -262,6 +341,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudioImagesRouteImport
       parentRoute: typeof StudioRoute
     }
+    '/_studio/publishing': {
+      id: '/_studio/publishing'
+      path: '/publishing'
+      fullPath: '/publishing'
+      preLoaderRoute: typeof StudioPublishingRouteImport
+      parentRoute: typeof StudioRoute
+    }
     '/_studio/research': {
       id: '/_studio/research'
       path: '/research'
@@ -276,11 +362,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudioScriptsRouteImport
       parentRoute: typeof StudioRoute
     }
+    '/_studio/seo': {
+      id: '/_studio/seo'
+      path: '/seo'
+      fullPath: '/seo'
+      preLoaderRoute: typeof StudioSeoRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/shorts': {
+      id: '/_studio/shorts'
+      path: '/shorts'
+      fullPath: '/shorts'
+      preLoaderRoute: typeof StudioShortsRouteImport
+      parentRoute: typeof StudioRoute
+    }
     '/_studio/storyboard': {
       id: '/_studio/storyboard'
       path: '/storyboard'
       fullPath: '/storyboard'
       preLoaderRoute: typeof StudioStoryboardRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/thumbnails': {
+      id: '/_studio/thumbnails'
+      path: '/thumbnails'
+      fullPath: '/thumbnails'
+      preLoaderRoute: typeof StudioThumbnailsRouteImport
       parentRoute: typeof StudioRoute
     }
     '/_studio/video': {
@@ -297,33 +404,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudioVoiceRouteImport
       parentRoute: typeof StudioRoute
     }
+    '/_studio/workflows': {
+      id: '/_studio/workflows'
+      path: '/workflows'
+      fullPath: '/workflows'
+      preLoaderRoute: typeof StudioWorkflowsRouteImport
+      parentRoute: typeof StudioRoute
+    }
   }
 }
 
 interface StudioRouteChildren {
+  StudioCalendarRoute: typeof StudioCalendarRoute
   StudioChannelsRoute: typeof StudioChannelsRoute
   StudioDashboardRoute: typeof StudioDashboardRoute
   StudioEditorRoute: typeof StudioEditorRoute
   StudioIdeasRoute: typeof StudioIdeasRoute
   StudioImagesRoute: typeof StudioImagesRoute
+  StudioPublishingRoute: typeof StudioPublishingRoute
   StudioResearchRoute: typeof StudioResearchRoute
   StudioScriptsRoute: typeof StudioScriptsRoute
+  StudioSeoRoute: typeof StudioSeoRoute
+  StudioShortsRoute: typeof StudioShortsRoute
   StudioStoryboardRoute: typeof StudioStoryboardRoute
+  StudioThumbnailsRoute: typeof StudioThumbnailsRoute
   StudioVideoRoute: typeof StudioVideoRoute
   StudioVoiceRoute: typeof StudioVoiceRoute
+  StudioWorkflowsRoute: typeof StudioWorkflowsRoute
 }
 
 const StudioRouteChildren: StudioRouteChildren = {
+  StudioCalendarRoute: StudioCalendarRoute,
   StudioChannelsRoute: StudioChannelsRoute,
   StudioDashboardRoute: StudioDashboardRoute,
   StudioEditorRoute: StudioEditorRoute,
   StudioIdeasRoute: StudioIdeasRoute,
   StudioImagesRoute: StudioImagesRoute,
+  StudioPublishingRoute: StudioPublishingRoute,
   StudioResearchRoute: StudioResearchRoute,
   StudioScriptsRoute: StudioScriptsRoute,
+  StudioSeoRoute: StudioSeoRoute,
+  StudioShortsRoute: StudioShortsRoute,
   StudioStoryboardRoute: StudioStoryboardRoute,
+  StudioThumbnailsRoute: StudioThumbnailsRoute,
   StudioVideoRoute: StudioVideoRoute,
   StudioVoiceRoute: StudioVoiceRoute,
+  StudioWorkflowsRoute: StudioWorkflowsRoute,
 }
 
 const StudioRouteWithChildren =
