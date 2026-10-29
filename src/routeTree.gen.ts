@@ -10,33 +10,191 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as StudioRouteImport } from './routes/_studio'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as StudioChannelsRouteImport } from './routes/_studio.channels'
+import { Route as StudioDashboardRouteImport } from './routes/_studio.dashboard'
+import { Route as StudioEditorRouteImport } from './routes/_studio.editor'
+import { Route as StudioIdeasRouteImport } from './routes/_studio.ideas'
+import { Route as StudioImagesRouteImport } from './routes/_studio.images'
+import { Route as StudioResearchRouteImport } from './routes/_studio.research'
+import { Route as StudioScriptsRouteImport } from './routes/_studio.scripts'
+import { Route as StudioStoryboardRouteImport } from './routes/_studio.storyboard'
+import { Route as StudioVideoRouteImport } from './routes/_studio.video'
+import { Route as StudioVoiceRouteImport } from './routes/_studio.voice'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudioRoute = StudioRouteImport.update({
+  id: '/_studio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudioChannelsRoute = StudioChannelsRouteImport.update({
+  id: '/channels',
+  path: '/channels',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioDashboardRoute = StudioDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioEditorRoute = StudioEditorRouteImport.update({
+  id: '/editor',
+  path: '/editor',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioIdeasRoute = StudioIdeasRouteImport.update({
+  id: '/ideas',
+  path: '/ideas',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioImagesRoute = StudioImagesRouteImport.update({
+  id: '/images',
+  path: '/images',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioResearchRoute = StudioResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioScriptsRoute = StudioScriptsRouteImport.update({
+  id: '/scripts',
+  path: '/scripts',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioStoryboardRoute = StudioStoryboardRouteImport.update({
+  id: '/storyboard',
+  path: '/storyboard',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioVideoRoute = StudioVideoRouteImport.update({
+  id: '/video',
+  path: '/video',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioVoiceRoute = StudioVoiceRouteImport.update({
+  id: '/voice',
+  path: '/voice',
+  getParentRoute: () => StudioRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/channels': typeof StudioChannelsRoute
+  '/dashboard': typeof StudioDashboardRoute
+  '/editor': typeof StudioEditorRoute
+  '/ideas': typeof StudioIdeasRoute
+  '/images': typeof StudioImagesRoute
+  '/research': typeof StudioResearchRoute
+  '/scripts': typeof StudioScriptsRoute
+  '/storyboard': typeof StudioStoryboardRoute
+  '/video': typeof StudioVideoRoute
+  '/voice': typeof StudioVoiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/channels': typeof StudioChannelsRoute
+  '/dashboard': typeof StudioDashboardRoute
+  '/editor': typeof StudioEditorRoute
+  '/ideas': typeof StudioIdeasRoute
+  '/images': typeof StudioImagesRoute
+  '/research': typeof StudioResearchRoute
+  '/scripts': typeof StudioScriptsRoute
+  '/storyboard': typeof StudioStoryboardRoute
+  '/video': typeof StudioVideoRoute
+  '/voice': typeof StudioVoiceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_studio': typeof StudioRouteWithChildren
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_studio/channels': typeof StudioChannelsRoute
+  '/_studio/dashboard': typeof StudioDashboardRoute
+  '/_studio/editor': typeof StudioEditorRoute
+  '/_studio/ideas': typeof StudioIdeasRoute
+  '/_studio/images': typeof StudioImagesRoute
+  '/_studio/research': typeof StudioResearchRoute
+  '/_studio/scripts': typeof StudioScriptsRoute
+  '/_studio/storyboard': typeof StudioStoryboardRoute
+  '/_studio/video': typeof StudioVideoRoute
+  '/_studio/voice': typeof StudioVoiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/reset-password'
+    | '/channels'
+    | '/dashboard'
+    | '/editor'
+    | '/ideas'
+    | '/images'
+    | '/research'
+    | '/scripts'
+    | '/storyboard'
+    | '/video'
+    | '/voice'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/reset-password'
+    | '/channels'
+    | '/dashboard'
+    | '/editor'
+    | '/ideas'
+    | '/images'
+    | '/research'
+    | '/scripts'
+    | '/storyboard'
+    | '/video'
+    | '/voice'
+  id:
+    | '__root__'
+    | '/'
+    | '/_studio'
+    | '/login'
+    | '/reset-password'
+    | '/_studio/channels'
+    | '/_studio/dashboard'
+    | '/_studio/editor'
+    | '/_studio/ideas'
+    | '/_studio/images'
+    | '/_studio/research'
+    | '/_studio/scripts'
+    | '/_studio/storyboard'
+    | '/_studio/video'
+    | '/_studio/voice'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  StudioRoute: typeof StudioRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +206,134 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_studio': {
+      id: '/_studio'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof StudioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_studio/channels': {
+      id: '/_studio/channels'
+      path: '/channels'
+      fullPath: '/channels'
+      preLoaderRoute: typeof StudioChannelsRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/dashboard': {
+      id: '/_studio/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof StudioDashboardRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/editor': {
+      id: '/_studio/editor'
+      path: '/editor'
+      fullPath: '/editor'
+      preLoaderRoute: typeof StudioEditorRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/ideas': {
+      id: '/_studio/ideas'
+      path: '/ideas'
+      fullPath: '/ideas'
+      preLoaderRoute: typeof StudioIdeasRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/images': {
+      id: '/_studio/images'
+      path: '/images'
+      fullPath: '/images'
+      preLoaderRoute: typeof StudioImagesRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/research': {
+      id: '/_studio/research'
+      path: '/research'
+      fullPath: '/research'
+      preLoaderRoute: typeof StudioResearchRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/scripts': {
+      id: '/_studio/scripts'
+      path: '/scripts'
+      fullPath: '/scripts'
+      preLoaderRoute: typeof StudioScriptsRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/storyboard': {
+      id: '/_studio/storyboard'
+      path: '/storyboard'
+      fullPath: '/storyboard'
+      preLoaderRoute: typeof StudioStoryboardRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/video': {
+      id: '/_studio/video'
+      path: '/video'
+      fullPath: '/video'
+      preLoaderRoute: typeof StudioVideoRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/voice': {
+      id: '/_studio/voice'
+      path: '/voice'
+      fullPath: '/voice'
+      preLoaderRoute: typeof StudioVoiceRouteImport
+      parentRoute: typeof StudioRoute
+    }
   }
 }
 
+interface StudioRouteChildren {
+  StudioChannelsRoute: typeof StudioChannelsRoute
+  StudioDashboardRoute: typeof StudioDashboardRoute
+  StudioEditorRoute: typeof StudioEditorRoute
+  StudioIdeasRoute: typeof StudioIdeasRoute
+  StudioImagesRoute: typeof StudioImagesRoute
+  StudioResearchRoute: typeof StudioResearchRoute
+  StudioScriptsRoute: typeof StudioScriptsRoute
+  StudioStoryboardRoute: typeof StudioStoryboardRoute
+  StudioVideoRoute: typeof StudioVideoRoute
+  StudioVoiceRoute: typeof StudioVoiceRoute
+}
+
+const StudioRouteChildren: StudioRouteChildren = {
+  StudioChannelsRoute: StudioChannelsRoute,
+  StudioDashboardRoute: StudioDashboardRoute,
+  StudioEditorRoute: StudioEditorRoute,
+  StudioIdeasRoute: StudioIdeasRoute,
+  StudioImagesRoute: StudioImagesRoute,
+  StudioResearchRoute: StudioResearchRoute,
+  StudioScriptsRoute: StudioScriptsRoute,
+  StudioStoryboardRoute: StudioStoryboardRoute,
+  StudioVideoRoute: StudioVideoRoute,
+  StudioVoiceRoute: StudioVoiceRoute,
+}
+
+const StudioRouteWithChildren =
+  StudioRoute._addFileChildren(StudioRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  StudioRoute: StudioRouteWithChildren,
+  LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
