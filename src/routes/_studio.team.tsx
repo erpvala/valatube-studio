@@ -18,7 +18,7 @@ export const Route = createFileRoute("/_studio/team")({
   component: Team,
 });
 
-export const ROLES = ["Owner", "Admin", "Editor", "Producer", "Writer", "SEO Specialist", "Viewer"];
+const ROLES = ["Owner", "Admin", "Editor", "Producer", "Writer", "SEO Specialist", "Viewer"];
 const MATRIX: [string, string[]][] = [
   ["Manage billing & workspace", ["Owner"]],
   ["Connect channels & integrations", ["Owner", "Admin"]],
