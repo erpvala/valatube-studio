@@ -46,7 +46,7 @@ function Help() {
           </Panel>
           <Panel title={<span className="flex items-center gap-2"><Keyboard className="size-4" /> Shortcuts</span>}><p className="text-sm"><kbd className="rounded border px-1.5 text-xs">Ctrl / ⌘ K</kbd> Global search</p></Panel>
           <Panel title={<span className="flex items-center gap-2"><BookOpen className="size-4" /> Guides</span>}>
-            <ul className="space-y-1 text-sm">{[["/ideas", "From idea to script"], ["/storyboard", "Building a storyboard"], ["/publishing", "Scheduling content"], ["/workflows", "Designing automations"]].map(([to, l]) => <li key={to}><Link to={to} className="text-primary">{l}</Link></li>)}</ul>
+            <ul className="space-y-1 text-sm">{([["/ideas", "From idea to script"], ["/storyboard", "Building a storyboard"], ["/publishing", "Scheduling content"], ["/workflows", "Designing automations"]] as const).map(([to, l]) => <li key={to}><Link to={to} className="text-primary">{l}</Link></li>)}</ul>
           </Panel>
         </div>
       </div>

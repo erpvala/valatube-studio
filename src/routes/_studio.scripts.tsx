@@ -12,7 +12,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { useLocalState } from "@/lib/local-store";
 
 export const Route = createFileRoute("/_studio/scripts")({
-  validateSearch: (s: Record<string, unknown>) => ({ idea: typeof s.idea === "string" ? s.idea : undefined }),
+  validateSearch: (s: Record<string, unknown>) => ({ idea: typeof s["idea"] === "string" ? (s["idea"] as string) : undefined }),
   head: pageHead("Script Studio", "Write structured video scripts with word count and duration estimates."),
   component: Scripts,
 });
@@ -45,7 +45,7 @@ function Scripts() {
   const dirty = JSON.stringify(s) !== JSON.stringify(saved);
 
   const save = () => {
-    if (!s.title.trim()) return toast.error("Add a title before saving");
+    if (!s.title.trim()) { toast.error("Add a title before saving"); return; }
     setSaved(s);
     setVersions([{ at: new Date().toLocaleString(), s }, ...versions].slice(0, 10));
     toast.success("Draft saved in this browser");

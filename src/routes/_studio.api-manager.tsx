@@ -19,7 +19,7 @@ const ENDPOINTS = [
   { m: "POST", p: "/v1/tasks/{id}/retry", d: "Retry a failed task." },
   { m: "GET", p: "/v1/analytics/views?range=30d", d: "Views time series." },
 ];
-const usage = dailySeries.slice(-14).map((r, i) => ({ date: r.date, calls: 800 + ((i * 137) % 600), errors: (i * 7) % 30 }));
+const usage = dailySeries.slice(-14).map((r, i) => ({ date: r["date"], calls: 800 + ((i * 137) % 600), errors: (i * 7) % 30 }));
 
 function ApiManager() {
   return (
@@ -34,7 +34,7 @@ function ApiManager() {
       <div className="mt-4 grid gap-4 xl:grid-cols-[1fr_360px]">
         <Panel title="Usage"><BarsChart data={usage} xKey="date" stacked series={[{ key: "calls", name: "Calls", color: "var(--chart-2)" }, { key: "errors", name: "Errors", color: "var(--chart-1)" }]} /></Panel>
         <Panel title="Integration status">
-          {[["YouTube Data API", "not_connected"], ["YouTube Analytics API", "not_connected"], ["AI provider router", "not_connected"], ["Webhook delivery", "not_connected"]].map(([n, s]) => <div key={n} className="mb-2 flex items-center justify-between text-sm">{n}<StatusBadge status={s} /></div>)}
+          {(["YouTube Data API", "YouTube Analytics API", "AI provider router", "Webhook delivery"] as const).map((n) => [n, "not_connected"] as const).map(([n, s]) => <div key={n} className="mb-2 flex items-center justify-between text-sm">{n}<StatusBadge status={s} /></div>)}
           <UnavailableNote>API keys are not generated or stored in Phase 01.</UnavailableNote>
         </Panel>
       </div>

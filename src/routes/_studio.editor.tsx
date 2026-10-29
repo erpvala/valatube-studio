@@ -28,17 +28,18 @@ function Editor() {
   const [clips, setClips] = useLocalState<Clip[]>("editor-clips", CLIPS);
   const [sel, setSel] = useState("c1");
   const [t, setT] = useState([0]);
+  const t0 = t[0] ?? 0;
   const [playing, setPlaying] = useState(false);
   const [saving, setSaving] = useState(false);
   const [exportOpen, setExportOpen] = useState(false);
   const [res, setRes] = useState("1080p");
-  const cur = clips.find((c) => c.start <= t[0] && t[0] < c.start + c.len) ?? clips[0];
+  const cur = clips.find((c) => c.start <= t0 && t0 < c.start + c.len) ?? clips[0] ?? CLIPS[0]!;
   const total = clips.reduce((a, c) => Math.max(a, c.start + c.len), TOTAL);
 
   const split = () => {
     const c = clips.find((x) => x.id === sel);
-    if (!c || t[0] <= c.start || t[0] >= c.start + c.len) return toast.error("Move the playhead inside the selected clip to split it");
-    const a = { ...c, len: t[0] - c.start }; const b = { ...c, id: `${c.id}b${Date.now()}`, name: `${c.name} (2)`, start: t[0], len: c.start + c.len - t[0] };
+    if (!c || t0 <= c.start || t0 >= c.start + c.len) { toast.error("Move the playhead inside the selected clip to split it"); return; }
+    const a = { ...c, len: t0 - c.start }; const b = { ...c, id: `${c.id}b${Date.now()}`, name: `${c.name} (2)`, start: t0, len: c.start + c.len - t0 };
     setClips(clips.flatMap((x) => (x.id === c.id ? [a, b] : [x])));
     toast.success("Clip split");
   };
@@ -57,7 +58,7 @@ function Editor() {
             <Button size="icon" variant="ghost" aria-label="Back to start" onClick={() => setT([0])}><SkipBack /></Button>
             <Button size="icon" aria-label={playing ? "Pause" : "Play"} onClick={() => { setPlaying(!playing); if (!playing) toast.info("Playback is simulated — no video file is loaded"); }}>{playing ? <Pause /> : <Play />}</Button>
             <Slider className="flex-1" min={0} max={total} value={t} onValueChange={setT} aria-label="Playhead" />
-            <span className="w-20 text-right font-mono text-xs">{Math.floor(t[0] / 60)}:{String(t[0] % 60).padStart(2, "0")} / {Math.floor(total / 60)}:{String(total % 60).padStart(2, "0")}</span>
+            <span className="w-20 text-right font-mono text-xs">{Math.floor(t0 / 60)}:{String(t0 % 60).padStart(2, "0")} / {Math.floor(total / 60)}:{String(total % 60).padStart(2, "0")}</span>
           </div>
         </Panel>
         <Panel title="Project settings">
@@ -80,7 +81,7 @@ function Editor() {
                     className={`absolute top-1 h-8 truncate rounded px-1.5 text-left text-[10px] font-medium ${tr.k === "Video" ? "bg-primary/80 text-primary-foreground" : tr.k === "Audio" ? "bg-info/60" : "bg-success/50"} ${sel === c.id ? "ring-2 ring-foreground" : ""}`}
                     style={{ left: `${(c.start / total) * 100}%`, width: `calc(${(c.len / total) * 100}% - 2px)` }}>{c.name}</button>
                 ))}
-                <div className="pointer-events-none absolute inset-y-0 w-0.5 bg-foreground" style={{ left: `${(t[0] / total) * 100}%` }} />
+                <div className="pointer-events-none absolute inset-y-0 w-0.5 bg-foreground" style={{ left: `${(t0 / total) * 100}%` }} />
               </div>
             </div>
           ))}

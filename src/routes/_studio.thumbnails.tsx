@@ -42,9 +42,9 @@ function Canvas({ d, ratio = "16:9" }: { d: Design; ratio?: keyof typeof RATIOS 
 }
 
 function Thumbnails() {
-  const [d, setD] = useState<Design>(TEMPLATES[0].d);
+  const [d, setD] = useState<Design>(TEMPLATES[0]!.d);
   const [ratio, setRatio] = useState<keyof typeof RATIOS>("16:9");
-  const [versions, setVersions] = useLocalState<Design[]>("thumb-versions", [TEMPLATES[0].d, TEMPLATES[3].d]);
+  const [versions, setVersions] = useLocalState<Design[]>("thumb-versions", [TEMPLATES[0]!.d, TEMPLATES[3]!.d]);
   const [compare, setCompare] = useState(false);
 
   return (
@@ -55,7 +55,7 @@ function Thumbnails() {
         <div className="space-y-4">
           <Panel title="Canvas">
             {compare && versions.length > 0 ? (
-              <div className="grid gap-3 md:grid-cols-2"><div><p className="mb-1 text-xs text-muted-foreground">Current (A)</p><Canvas d={d} /></div><div><p className="mb-1 text-xs text-muted-foreground">Last saved (B)</p><Canvas d={versions[0]} /></div></div>
+              <div className="grid gap-3 md:grid-cols-2"><div><p className="mb-1 text-xs text-muted-foreground">Current (A)</p><Canvas d={d} /></div><div><p className="mb-1 text-xs text-muted-foreground">Last saved (B)</p><Canvas d={versions[0]!} /></div></div>
             ) : <div className={ratio === "9:16" ? "mx-auto max-w-xs" : ratio === "1:1" ? "mx-auto max-w-md" : ""}><Canvas d={d} ratio={ratio} /></div>}
           </Panel>
           <Panel title="Templates">
@@ -69,7 +69,7 @@ function Thumbnails() {
           <div className="space-y-4">
             <Field label="Headline" hint={`${d.text.length}/30 — short text reads best`}><Input maxLength={30} value={d.text} onChange={(e) => setD({ ...d, text: e.target.value })} /></Field>
             <Field label="Sub-label"><Input maxLength={24} value={d.sub} onChange={(e) => setD({ ...d, sub: e.target.value })} /></Field>
-            <Field label={`Text size: ${d.size}`}><Slider min={24} max={64} value={[d.size]} onValueChange={(v) => setD({ ...d, size: v[0] })} /></Field>
+            <Field label={`Text size: ${d.size}`}><Slider min={24} max={64} value={[d.size]} onValueChange={(v) => setD({ ...d, size: v[0] ?? d.size })} /></Field>
             <Field label="Layout"><Chips value={d.layout} onChange={(v) => setD({ ...d, layout: v })} options={[{ value: "left", label: "Left" }, { value: "center", label: "Center" }, { value: "bottom", label: "Bottom" }]} /></Field>
             <Field label="Aspect preset"><Chips value={ratio} onChange={setRatio} options={[{ value: "16:9", label: "16:9" }, { value: "9:16", label: "9:16" }, { value: "1:1", label: "1:1" }]} /></Field>
             <Field label="Background asset"><div className="grid grid-cols-4 gap-2">{THUMBS.map((t, i) => <button key={i} aria-label={`Asset ${i + 1}`} onClick={() => setD({ ...d, img: i })} className={`overflow-hidden rounded ring-2 ${d.img === i ? "ring-primary" : "ring-transparent"}`}><img src={t} alt="" className="aspect-video object-cover" /></button>)}</div></Field>

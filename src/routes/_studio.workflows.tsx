@@ -74,7 +74,7 @@ function Workflows() {
               </div>
             </Panel>
             <div className="space-y-4">
-              {cur && <Panel title="Node configuration" action={<Button size="icon" variant="ghost" aria-label="Delete node" onClick={() => { setNodes(nodes.filter((n) => n.id !== cur.id)); setSel(nodes[0]?.id); }}><Trash2 /></Button>}>
+              {cur && <Panel title="Node configuration" action={<Button size="icon" variant="ghost" aria-label="Delete node" onClick={() => { setNodes(nodes.filter((n) => n.id !== cur.id)); setSel(nodes[0]?.id ?? ""); }}><Trash2 /></Button>}>
                 <div className="space-y-3">
                   <Field label="Label"><Input value={cur.label} onChange={(e) => setNodes(nodes.map((n) => (n.id === cur.id ? { ...n, label: e.target.value } : n)))} /></Field>
                   <Field label="Configuration"><Input value={cur.config} onChange={(e) => setNodes(nodes.map((n) => (n.id === cur.id ? { ...n, config: e.target.value } : n)))} /></Field>

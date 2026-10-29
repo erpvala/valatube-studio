@@ -27,8 +27,8 @@ const LOGS = [
 
 function Agents() {
   const [list, setList] = useLocalState("agents", seed);
-  const [sel, setSel] = useState(list[0].id);
-  const a = list.find((x) => x.id === sel)!;
+  const [sel, setSel] = useState(list[0]?.id ?? "");
+  const a = list.find((x) => x.id === sel) ?? list[0]!;
   const [creativity, setCreativity] = useState([0.6]);
   const upd = (patch: Partial<typeof a>) => setList(list.map((x) => (x.id === sel ? { ...x, ...patch } : x)));
 
@@ -48,7 +48,7 @@ function Agents() {
           <div className="grid gap-4 md:grid-cols-2">
             <Field label="Status"><Select value={a.status} onValueChange={(v) => upd({ status: v })}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="idle">Idle</SelectItem><SelectItem value="paused">Paused</SelectItem></SelectContent></Select></Field>
             <Field label="Model provider" hint="Connect providers in Integrations (Phase 02)"><Select value="none" disabled><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="none">Not connected</SelectItem></SelectContent></Select></Field>
-            <Field label={`Creativity: ${creativity[0].toFixed(1)}`}><Slider min={0} max={1} step={0.1} value={creativity} onValueChange={setCreativity} /></Field>
+            <Field label={`Creativity: ${(creativity[0] ?? 0).toFixed(1)}`}><Slider min={0} max={1} step={0.1} value={creativity} onValueChange={setCreativity} /></Field>
             <Field label="Instructions"><Textarea rows={3} defaultValue={`You are the ${a.name}. ${a.role}. Keep a friendly, factual tone.`} /></Field>
           </div>
           <p className="mb-2 mt-5 text-xs font-medium text-muted-foreground">Channel assignment</p>

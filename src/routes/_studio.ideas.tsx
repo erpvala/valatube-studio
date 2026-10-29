@@ -19,7 +19,7 @@ export const Route = createFileRoute("/_studio/ideas")({
 });
 
 const NICHES = ["Tech Reviews", "Cooking", "Travel", "Personal Finance"];
-const blank: Idea = { id: "", title: "", type: "long", niche: NICHES[0], audience: "", score: 70, notes: "" };
+const blank: Idea = { id: "", title: "", type: "long", niche: "Tech Reviews", audience: "", score: 70, notes: "" };
 
 function Ideas() {
   const navigate = useNavigate();

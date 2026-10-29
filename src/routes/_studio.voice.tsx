@@ -25,7 +25,7 @@ const JOBS = [
 function Voice() {
   const langs = Array.from(new Set(voices.map((v) => v.lang)));
   const [lang, setLang] = useState("all");
-  const [voice, setVoice] = useState(voices[0].id);
+  const [voice, setVoice] = useState(voices[0]?.id ?? "");
   const [speed, setSpeed] = useState([1]);
   const [pitch, setPitch] = useState([0]);
   const [text, setText] = useState("You're probably about to overspend on your next laptop — here's how to avoid it.");
@@ -59,8 +59,8 @@ function Voice() {
         <div className="space-y-4">
           <Panel title="Voice settings">
             <div className="space-y-5">
-              <Field label={`Speed: ${speed[0].toFixed(1)}×`}><Slider min={0.5} max={2} step={0.1} value={speed} onValueChange={setSpeed} /></Field>
-              <Field label={`Pitch: ${pitch[0] > 0 ? "+" : ""}${pitch[0]}`}><Slider min={-10} max={10} step={1} value={pitch} onValueChange={setPitch} /></Field>
+              <Field label={`Speed: ${(speed[0] ?? 1).toFixed(1)}×`}><Slider min={0.5} max={2} step={0.1} value={speed} onValueChange={setSpeed} /></Field>
+              <Field label={`Pitch: ${(pitch[0] ?? 0) > 0 ? "+" : ""}${pitch[0] ?? 0}`}><Slider min={-10} max={10} step={1} value={pitch} onValueChange={setPitch} /></Field>
               <p className="text-xs text-muted-foreground">Selected: <span className="text-foreground">{voices.find((v) => v.id === voice)?.name}</span></p>
             </div>
           </Panel>

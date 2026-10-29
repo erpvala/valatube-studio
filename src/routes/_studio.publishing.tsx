@@ -88,7 +88,7 @@ function Publishing() {
             <Field label="Time"><Input type="time" value={time} onChange={(e) => setTime(e.target.value)} /></Field>
           </div>
           <div className="rounded-lg bg-elevated p-3 text-xs"><p className="font-semibold">Metadata preview</p><p className="mt-1 text-muted-foreground">{edit?.title} · {edit && channelById(edit.channelId).name}</p></div>
-          <div className="space-y-2"><p className="text-xs font-medium text-muted-foreground">Publishing checklist</p>{CHECK.map((c, i) => <label key={c} className="flex items-center gap-2 text-sm"><Checkbox checked={checks[i]} onCheckedChange={(v) => { const n = [...checks]; n[i] = !!v; setChecks(n); setErr(""); }} />{c}</label>)}</div>
+          <div className="space-y-2"><p className="text-xs font-medium text-muted-foreground">Publishing checklist</p>{CHECK.map((c, i) => <label key={c} className="flex items-center gap-2 text-sm"><Checkbox checked={!!checks[i]} onCheckedChange={(v) => { const n = [...checks]; n[i] = !!v; setChecks(n); setErr(""); }} />{c}</label>)}</div>
           <div className="space-y-2">
             <Button size="sm" variant="outline" onClick={() => setUpload(0)} disabled={upload !== null && upload < 100}><Upload /> Upload demo</Button>
             {upload !== null && <><Progress value={upload} className="h-2" /><p className="text-xs text-muted-foreground">{upload < 100 ? `Simulated upload ${upload}%` : "Simulated upload finished — no file left your device."}</p></>}
