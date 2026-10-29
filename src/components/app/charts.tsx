@@ -52,7 +52,7 @@ export function BarsChart({ data, series, xKey = "name", height = 240, stacked }
         <Tooltip {...tip} cursor={{ fill: "var(--elevated)" }} formatter={(v: number) => v.toLocaleString()} />
         {series.length > 1 && <Legend wrapperStyle={{ fontSize: 11 }} />}
         {series.map((s) => (
-          <Bar key={s.key} dataKey={s.key} name={s.name} fill={s.color} radius={[4, 4, 0, 0]} stackId={stacked ? "a" : undefined} />
+          <Bar key={s.key} dataKey={s.key} name={s.name} fill={s.color} radius={[4, 4, 0, 0]} {...(stacked ? { stackId: "a" } : {})} />
         ))}
       </BarChart>
     </ResponsiveContainer>

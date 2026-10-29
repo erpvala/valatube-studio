@@ -177,7 +177,7 @@ export function Thumb({ index, className, label }: { index: number; className?: 
   );
 }
 
-export function Field({ label, children, hint, error }: { label: string; children: ReactNode; hint?: string; error?: string }) {
+export function Field({ label, children, hint, error }: { label: string; children: ReactNode; hint?: string | undefined; error?: string | undefined }) {
   return (
     <label className="block space-y-1.5">
       <span className="text-xs font-medium text-muted-foreground">{label}</span>

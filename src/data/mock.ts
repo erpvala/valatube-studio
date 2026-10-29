@@ -95,10 +95,10 @@ export const dailySeries = Array.from({ length: 30 }, (_, i) => {
     row[`${c.id}_subs`] = Math.round((c.subscribers * c.growth) / 100 / 30 * (0.6 + r() * 0.8));
     row[`${c.id}_rev`] = Math.round((c.revenue / 30) * (0.7 + r() * 0.6));
   });
-  row.views = channels.reduce((a, c) => a + (row[c.id] as number), 0);
-  row.subs = channels.reduce((a, c) => a + (row[`${c.id}_subs`] as number), 0);
-  row.revenue = channels.reduce((a, c) => a + (row[`${c.id}_rev`] as number), 0);
-  row.watch = Math.round((row.views as number) * 0.09);
+  row["views"] = channels.reduce((a, c) => a + (row[c.id] as number), 0);
+  row["subs"] = channels.reduce((a, c) => a + (row[`${c.id}_subs`] as number), 0);
+  row["revenue"] = channels.reduce((a, c) => a + (row[`${c.id}_rev`] as number), 0);
+  row["watch"] = Math.round((row["views"] as number) * 0.09);
   return row;
 });
 

@@ -26,7 +26,7 @@ function Storyboard() {
   const [preview, setPreview] = useState(false);
   const cur = scenes.find((s) => s.id === active);
   const update = (patch: Partial<Scene>) => setScenes(scenes.map((s) => (s.id === active ? { ...s, ...patch } : s)));
-  const move = (i: number, d: number) => { const n = [...scenes]; const j = i + d; if (j < 0 || j >= n.length) return; [n[i], n[j]] = [n[j], n[i]]; setScenes(n); };
+  const move = (i: number, d: number) => { const n = [...scenes]; const j = i + d; if (j < 0 || j >= n.length) return; const tmp = n[i]!; n[i] = n[j]!; n[j] = tmp; setScenes(n); };
   const total = scenes.reduce((a, s) => a + s.duration, 0);
 
   return (
