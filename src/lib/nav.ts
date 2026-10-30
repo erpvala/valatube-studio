@@ -1,7 +1,7 @@
 import {
   LayoutDashboard, Tv, Search, Lightbulb, FileText, Film, Mic, ImageIcon, Clapperboard, Scissors,
   Frame, Tags, Send, CalendarDays, Smartphone, Workflow, Bot, ListChecks, BarChart3, Swords,
-  DollarSign, FolderOpen, CheckCircle2, Code2, Plug, Bell, Users, Settings, LifeBuoy, Info,
+  DollarSign, MessagesSquare, FolderOpen, CheckCircle2, Code2, Plug, Bell, Users, Settings, LifeBuoy, Info,
   type LucideIcon,
 } from "lucide-react";
 
@@ -27,6 +27,7 @@ export const NAV: NavItem[] = [
   { n: "17", label: "AI Agents", to: "/agents", icon: Bot, group: "Automate" },
   { n: "18", label: "Task Manager", to: "/tasks", icon: ListChecks, group: "Automate" },
   { n: "19", label: "Analytics", to: "/analytics", icon: BarChart3, group: "Grow" },
+  { n: "31", label: "Audience Engagement", to: "/engagement", icon: MessagesSquare, group: "Grow" },
   { n: "20", label: "Competitor Research", to: "/competitors", icon: Swords, group: "Grow" },
   { n: "21", label: "Revenue Overview", to: "/revenue", icon: DollarSign, group: "Grow" },
   { n: "22", label: "Asset Library", to: "/assets", icon: FolderOpen, group: "Workspace" },
