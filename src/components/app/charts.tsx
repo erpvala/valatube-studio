@@ -16,7 +16,7 @@ export function TrendChart({ data, series, height = 240, type = "area" }: { data
   const C = type === "area" ? AreaChart : LineChart;
   return (
     <ResponsiveContainer width="100%" height={height}>
-      <C data={data} margin={{ left: -12, right: 8, top: 8 }}>
+      <C data={data} margin={{ left: -4, right: 8, top: 8 }}>
         <defs>
           {series.map((s) => (
             <linearGradient key={s.key} id={`g-${s.key}`} x1="0" x2="0" y1="0" y2="1">
@@ -27,7 +27,7 @@ export function TrendChart({ data, series, height = 240, type = "area" }: { data
         </defs>
         <CartesianGrid stroke="var(--divider)" vertical={false} />
         <XAxis dataKey="date" {...axis} interval="preserveStartEnd" minTickGap={24} />
-        <YAxis {...axis} tickFormatter={(v) => fmt(v)} width={48} />
+        <YAxis {...axis} tickFormatter={(v) => fmt(v)} width={58} />
         <Tooltip {...tip} formatter={(v: number) => v.toLocaleString()} />
         {series.length > 1 && <Legend wrapperStyle={{ fontSize: 11 }} />}
         {series.map((s) =>
@@ -45,10 +45,10 @@ export function TrendChart({ data, series, height = 240, type = "area" }: { data
 export function BarsChart({ data, series, xKey = "name", height = 240, stacked }: { data: object[]; series: Series[]; xKey?: string; height?: number; stacked?: boolean }) {
   return (
     <ResponsiveContainer width="100%" height={height}>
-      <BarChart data={data} margin={{ left: -12, right: 8, top: 8 }}>
+      <BarChart data={data} margin={{ left: -4, right: 8, top: 8 }}>
         <CartesianGrid stroke="var(--divider)" vertical={false} />
         <XAxis dataKey={xKey} {...axis} />
-        <YAxis {...axis} tickFormatter={(v) => fmt(v)} width={48} />
+        <YAxis {...axis} tickFormatter={(v) => fmt(v)} width={58} />
         <Tooltip {...tip} cursor={{ fill: "var(--elevated)" }} formatter={(v: number) => v.toLocaleString()} />
         {series.length > 1 && <Legend wrapperStyle={{ fontSize: 11 }} />}
         {series.map((s) => (
