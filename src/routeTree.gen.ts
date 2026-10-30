@@ -24,6 +24,7 @@ import { Route as StudioChannelsRouteImport } from './routes/_studio.channels'
 import { Route as StudioCompetitorsRouteImport } from './routes/_studio.competitors'
 import { Route as StudioDashboardRouteImport } from './routes/_studio.dashboard'
 import { Route as StudioEditorRouteImport } from './routes/_studio.editor'
+import { Route as StudioEngagementRouteImport } from './routes/_studio.engagement'
 import { Route as StudioHelpRouteImport } from './routes/_studio.help'
 import { Route as StudioIdeasRouteImport } from './routes/_studio.ideas'
 import { Route as StudioImagesRouteImport } from './routes/_studio.images'
@@ -116,6 +117,11 @@ const StudioDashboardRoute = StudioDashboardRouteImport.update({
 const StudioEditorRoute = StudioEditorRouteImport.update({
   id: '/editor',
   path: '/editor',
+  getParentRoute: () => StudioRoute,
+} as any)
+const StudioEngagementRoute = StudioEngagementRouteImport.update({
+  id: '/engagement',
+  path: '/engagement',
   getParentRoute: () => StudioRoute,
 } as any)
 const StudioHelpRoute = StudioHelpRouteImport.update({
@@ -229,6 +235,7 @@ export interface FileRoutesByFullPath {
   '/competitors': typeof StudioCompetitorsRoute
   '/dashboard': typeof StudioDashboardRoute
   '/editor': typeof StudioEditorRoute
+  '/engagement': typeof StudioEngagementRoute
   '/help': typeof StudioHelpRoute
   '/ideas': typeof StudioIdeasRoute
   '/images': typeof StudioImagesRoute
@@ -264,6 +271,7 @@ export interface FileRoutesByTo {
   '/competitors': typeof StudioCompetitorsRoute
   '/dashboard': typeof StudioDashboardRoute
   '/editor': typeof StudioEditorRoute
+  '/engagement': typeof StudioEngagementRoute
   '/help': typeof StudioHelpRoute
   '/ideas': typeof StudioIdeasRoute
   '/images': typeof StudioImagesRoute
@@ -301,6 +309,7 @@ export interface FileRoutesById {
   '/_studio/competitors': typeof StudioCompetitorsRoute
   '/_studio/dashboard': typeof StudioDashboardRoute
   '/_studio/editor': typeof StudioEditorRoute
+  '/_studio/engagement': typeof StudioEngagementRoute
   '/_studio/help': typeof StudioHelpRoute
   '/_studio/ideas': typeof StudioIdeasRoute
   '/_studio/images': typeof StudioImagesRoute
@@ -338,6 +347,7 @@ export interface FileRouteTypes {
     | '/competitors'
     | '/dashboard'
     | '/editor'
+    | '/engagement'
     | '/help'
     | '/ideas'
     | '/images'
@@ -373,6 +383,7 @@ export interface FileRouteTypes {
     | '/competitors'
     | '/dashboard'
     | '/editor'
+    | '/engagement'
     | '/help'
     | '/ideas'
     | '/images'
@@ -409,6 +420,7 @@ export interface FileRouteTypes {
     | '/_studio/competitors'
     | '/_studio/dashboard'
     | '/_studio/editor'
+    | '/_studio/engagement'
     | '/_studio/help'
     | '/_studio/ideas'
     | '/_studio/images'
@@ -542,6 +554,13 @@ declare module '@tanstack/react-router' {
       path: '/editor'
       fullPath: '/editor'
       preLoaderRoute: typeof StudioEditorRouteImport
+      parentRoute: typeof StudioRoute
+    }
+    '/_studio/engagement': {
+      id: '/_studio/engagement'
+      path: '/engagement'
+      fullPath: '/engagement'
+      preLoaderRoute: typeof StudioEngagementRouteImport
       parentRoute: typeof StudioRoute
     }
     '/_studio/help': {
@@ -692,6 +711,7 @@ interface StudioRouteChildren {
   StudioCompetitorsRoute: typeof StudioCompetitorsRoute
   StudioDashboardRoute: typeof StudioDashboardRoute
   StudioEditorRoute: typeof StudioEditorRoute
+  StudioEngagementRoute: typeof StudioEngagementRoute
   StudioHelpRoute: typeof StudioHelpRoute
   StudioIdeasRoute: typeof StudioIdeasRoute
   StudioImagesRoute: typeof StudioImagesRoute
@@ -725,6 +745,7 @@ const StudioRouteChildren: StudioRouteChildren = {
   StudioCompetitorsRoute: StudioCompetitorsRoute,
   StudioDashboardRoute: StudioDashboardRoute,
   StudioEditorRoute: StudioEditorRoute,
+  StudioEngagementRoute: StudioEngagementRoute,
   StudioHelpRoute: StudioHelpRoute,
   StudioIdeasRoute: StudioIdeasRoute,
   StudioImagesRoute: StudioImagesRoute,
