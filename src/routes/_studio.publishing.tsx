@@ -13,16 +13,19 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { channelById, fmt, videos as seed, type Video, type VideoStatus } from "@/data/mock";
 import { useLocalState } from "@/lib/local-store";
+import { validateSchedule } from "@/lib/schedule";
 
 export const Route = createFileRoute("/_studio/publishing")({
   head: pageHead("Publishing Manager", "Drafts, scheduled, published and failed content."),
   component: Publishing,
+  validateSearch: (search: Record<string, unknown>) => ({ video: typeof search.video === "string" ? search.video : undefined }),
 });
 
 type Filter = "all" | VideoStatus;
 const CHECK = ["Title & description reviewed", "Thumbnail approved", "Captions attached", "Age/rights declarations confirmed"];
 
 function Publishing() {
+  const { video: selectedVideo } = Route.useSearch();
   const { channel } = useChannel();
   const [list, setList] = useLocalState<Video[]>("videos", seed);
   const [f, setF] = useState<Filter>("all");
@@ -40,15 +43,14 @@ function Publishing() {
     return () => clearTimeout(t);
   }, [upload]);
 
-  const rows = list.filter((v) => (channel === "all" || v.channelId === channel) && (f === "all" || v.status === f) && v.title.toLowerCase().includes(q.toLowerCase()));
+  const rows = list.filter((v) => (!selectedVideo || v.id === selectedVideo) && (channel === "all" || v.channelId === channel) && (f === "all" || v.status === f) && v.title.toLowerCase().includes(q.toLowerCase()));
   const count = (s: VideoStatus) => list.filter((v) => (channel === "all" || v.channelId === channel) && v.status === s).length;
-  const open = (v: Video) => { setEdit(v); setDate(v.date); setChecks(CHECK.map(() => false)); setErr(""); setUpload(null); };
+  const open = (v: Video) => { setEdit(v); setDate(v.date); setTime(v.time ?? "18:00"); setChecks(CHECK.map(() => false)); setErr(""); setUpload(null); };
   const schedule = () => {
     if (!edit) return;
-    if (!date) return setErr("Pick a date.");
-    if (new Date(`${date}T${time}`) < new Date("2026-10-30T10:00")) return setErr("Choose a date/time in the future.");
-    if (checks.some((c) => !c)) return setErr("Complete the publishing checklist first.");
-    setList(list.map((v) => (v.id === edit.id ? { ...v, status: "scheduled", date } : v)));
+    const error = validateSchedule(date, time, checks);
+    if (error) return setErr(error);
+    setList(list.map((v) => (v.id === edit.id ? { ...v, status: "scheduled", date, time } : v)));
     toast.success("Scheduled in ValaTube (simulation)", { description: "Nothing was sent to YouTube." });
     setEdit(null);
   };
@@ -56,6 +58,7 @@ function Publishing() {
   return (
     <PageLoad>
       <PageHeader title="Publishing Manager" description="Local simulation only — no videos are uploaded, scheduled or published on YouTube." />
+      {selectedVideo && <Button asChild variant="outline" className="mb-3"><a href="/publishing">Show all content</a></Button>}
       <div className="mb-4 flex flex-col gap-2 lg:flex-row lg:items-center">
         <Chips value={f} onChange={setF} options={[{ value: "all", label: "All" }, { value: "draft", label: `Drafts ${count("draft")}` }, { value: "scheduled", label: `Scheduled ${count("scheduled")}` }, { value: "published", label: `Published ${count("published")}` }, { value: "processing", label: `Processing ${count("processing")}` }, { value: "failed", label: `Failed ${count("failed")}` }]} />
         <SearchBox value={q} onChange={setQ} placeholder="Search videos…" className="lg:ml-auto lg:w-64" />
@@ -67,7 +70,7 @@ function Publishing() {
               <Thumb index={v.thumb} label={v.duration} className="sm:w-40 sm:shrink-0" />
               <div className="min-w-0 flex-1">
                 <p className="font-medium">{v.title}</p>
-                <p className="text-xs text-muted-foreground">{channelById(v.channelId).name} · {v.type === "short" ? "Short" : "Long-form"} · {v.status === "published" ? `${fmt(v.views)} views` : v.date}</p>
+                <p className="text-xs text-muted-foreground">{channelById(v.channelId).name} · {v.type === "short" ? "Short" : "Long-form"} · {v.status === "published" ? `${fmt(v.views)} views` : `${v.date}${v.time ? ` · ${v.time}` : ""}`}</p>
                 <div className="mt-1"><StatusBadge status={v.status} /></div>
               </div>
               <div className="flex gap-2">
