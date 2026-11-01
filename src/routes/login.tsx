@@ -15,6 +15,8 @@ export const Route = createFileRoute("/login")({
       { name: "description", content: "Sign in to ValaTube Studio by Software Vala™." },
       { property: "og:title", content: "Sign in — ValaTube Studio" },
       { property: "og:description", content: "Create Smarter. Manage Better." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Login,
@@ -98,9 +100,9 @@ function Login() {
               </div>
               <div className="relative">
                 <Input id="p" type={show ? "text" : "password"} autoComplete="current-password" value={password} onChange={(e) => { setPassword(e.target.value); setErrors({}); }} className="h-11 bg-surface pr-10" aria-invalid={!!errors.password} />
-                <button type="button" onClick={() => setShow(!show)} aria-label={show ? "Hide password" : "Show password"} className="absolute right-2 top-1/2 grid size-8 -translate-y-1/2 place-items-center text-muted-foreground">
+                <Button type="button" variant="ghost" size="icon" onClick={() => setShow(!show)} aria-label={show ? "Hide password" : "Show password"} title={show ? "Hide password" : "Show password"} className="absolute right-2 top-1/2 size-8 -translate-y-1/2 text-muted-foreground">
                   {show ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
-                </button>
+                </Button>
               </div>
               {errors.password && <p className="text-xs text-destructive">{errors.password}</p>}
             </div>

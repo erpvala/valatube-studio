@@ -10,6 +10,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "ValaTube Studio by Software Vala™: plan, create, publish and analyse YouTube content from one studio." },
       { property: "og:title", content: "ValaTube Studio" },
       { property: "og:description", content: "Create Smarter. Manage Better. Powered by Software Vala™." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Splash,
