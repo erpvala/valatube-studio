@@ -14,6 +14,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { channels, dailySeries, fmt, money, videos, type Channel } from "@/data/mock";
 import { useLocalState } from "@/lib/local-store";
+import { useChannel } from "@/components/app/AppShell";
 
 export const Route = createFileRoute("/_studio/channels")({
   head: pageHead("Channel Manager", "Manage, compare and configure your channels."),
@@ -21,7 +22,7 @@ export const Route = createFileRoute("/_studio/channels")({
 });
 
 function Channels() {
-  const [list, setList] = useLocalState<Channel[]>("channels", channels);
+  const { channelList: list, setChannelList: setList } = useChannel();
   const [sel, setSel] = useState<string | null>(null);
   const [onboard, setOnboard] = useState(false);
   const [step, setStep] = useState(1);
@@ -78,7 +79,8 @@ function Channels() {
 
 function ChannelDetail({ ch, onBack, onSave }: { ch: Channel; onBack: () => void; onSave: (c: Channel) => void }) {
   const [form, setForm] = useState(ch);
-  const vids = videos.filter((v) => v.channelId === ch.id);
+  const [localVideos] = useLocalState("videos", videos);
+  const vids = localVideos.filter((v) => v.channelId === ch.id);
   return (
     <>
       <Button variant="ghost" size="sm" onClick={onBack} className="mb-2"><ArrowLeft /> All channels</Button>
@@ -91,7 +93,7 @@ function ChannelDetail({ ch, onBack, onSave }: { ch: Channel; onBack: () => void
         </div>
       </div>
       <Tabs defaultValue="performance" className="mt-4">
-        <TabsList><TabsTrigger value="performance">Performance</TabsTrigger><TabsTrigger value="videos">Recent videos</TabsTrigger><TabsTrigger value="branding">Branding</TabsTrigger><TabsTrigger value="settings"><Settings className="size-3.5" /> Settings</TabsTrigger></TabsList>
+        <TabsList className="h-auto flex-wrap"><TabsTrigger value="performance">Performance</TabsTrigger><TabsTrigger value="videos">Recent videos</TabsTrigger><TabsTrigger value="branding">Branding</TabsTrigger><TabsTrigger value="settings"><Settings className="size-3.5" /> Settings</TabsTrigger></TabsList>
         <TabsContent value="performance" className="space-y-4">
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4"><KpiCard label="Subscribers" value={fmt(ch.subscribers)} delta={`+${ch.growth}%`} /><KpiCard label="Views" value={fmt(ch.views)} /><KpiCard label="Videos" value={`${ch.videos}`} /><KpiCard label="Est. revenue (30d)" value={money(ch.revenue)} /></div>
           <Panel title="Daily views (demo)"><TrendChart data={dailySeries} series={[{ key: ch.id, name: "Views", color: "var(--chart-1)" }]} /></Panel>

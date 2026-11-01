@@ -173,8 +173,16 @@
   }
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.01em;
+    letter-spacing: 0;
   }
+}
+
+/* Grid items and tool headers must not force the viewport wider on phones. */
+section, main, main > div, main section > div { min-width: 0; }
+section > header { flex-wrap: wrap; }
+section > header > h2 { min-width: 0; overflow-wrap: anywhere; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
 
 @utility safe-bottom {

@@ -15,5 +15,7 @@
 - Demo credentials live only in `src/lib/demo-auth.ts` so they can be swapped for real auth later.
 - All sample data lives in `src/data/`; route files must not export non-route values (breaks code splitting).
 - Local edits persist through `useLocalState` (prefix `vt:data:`) so "Reset demo data" can clear them.
+- Local-state setters persist immediately and broadcast changes/reset to mounted subscribers; shared records must use the same key to stay consistent across pages.
+- Scheduling stores date and time together and validates against the browser clock; it never calls a publishing service.
 - Shared UI building blocks are in `src/components/app/kit.tsx`, charts in `charts.tsx`; reuse them rather than re-styling per page.
 - Dark theme is default (`html.dark`); colours come only from tokens in `src/styles.css`.

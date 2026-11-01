@@ -45,6 +45,7 @@ export type Video = {
   ctr: number;
   watchHours: number;
   date: string; // ISO
+  time?: string; // Local demo schedule time (workspace/browser clock)
   duration: string;
   thumb: number;
 };
@@ -220,4 +221,4 @@ export const voices = [
 export const fmt = (n: number) =>
   n >= 1_000_000 ? `${(n / 1_000_000).toFixed(1)}M` : n >= 1000 ? `${(n / 1000).toFixed(1)}K` : `${n}`;
 export const money = (n: number) => `$${n.toLocaleString("en-US")}`;
-export const channelById = (id: string) => channels.find((c) => c.id === id)!;
+export const channelById = (id: string) => channels.find((c) => c.id === id) ?? { ...channels[0], id, name: "Local demo channel" };

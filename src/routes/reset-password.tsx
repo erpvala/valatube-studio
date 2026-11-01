@@ -12,6 +12,8 @@ export const Route = createFileRoute("/reset-password")({
       { name: "description", content: "Reset your ValaTube Studio password (Phase 01 simulation)." },
       { property: "og:title", content: "Reset password — ValaTube Studio" },
       { property: "og:description", content: "Password reset for ValaTube Studio." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Reset,
