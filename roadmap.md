@@ -1,4 +1,5 @@
 # Phase 01 completion audit
+- [ ] Verify harness TypeScript/production-build results and fix remaining errors before QA.
 - [ ] Inspect both public repositories and verify licenses from actual source.
 - [ ] Audit existing frontend against the requested page inventory and interactions.
 - [ ] Complete important frontend gaps, preserving demo-only behavior.
