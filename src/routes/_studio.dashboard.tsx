@@ -56,7 +56,7 @@ function Dashboard() {
       </div>
 
       <Panel title="Content production pipeline" className="mt-4">
-        <div className="grid grid-cols-3 gap-2 md:grid-cols-6">
+        <div className="grid grid-cols-3 gap-2 xl:grid-cols-6">
           {pipeline.map((p, i) => (
             <div key={p.stage} className="rounded-lg bg-elevated p-3">
               <p className="text-[10px] font-semibold uppercase tracking-wider text-subtle">0{i + 1}</p>

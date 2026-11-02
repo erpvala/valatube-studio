@@ -34,8 +34,8 @@ function VideoStudio() {
   return (
     <PageLoad>
       <PageHeader title="AI Video Studio" description="Previews use still sample frames. No video is rendered in Phase 01." />
-      <div className="grid gap-4 xl:grid-cols-[1fr_360px]">
-        <div className="space-y-4">
+      <div className="grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1fr)_360px]">
+        <div className="min-w-0 space-y-4">
           <Panel title="Preview">
             <div className={`relative mx-auto overflow-hidden rounded-lg bg-elevated ${ratio === "9:16" ? "aspect-[9/16] max-w-xs" : ratio === "1:1" ? "aspect-square max-w-md" : "aspect-video"}`}>
               <Thumb index={scenes[active]?.asset ?? 0} className="absolute inset-0 aspect-auto size-full rounded-none" />

@@ -67,8 +67,8 @@ function Engagement() {
         <SearchBox value={q} onChange={setQ} placeholder="Search comments…" className="lg:ml-auto lg:w-60" />
       </div>
 
-      <div className="mt-4 grid gap-4 xl:grid-cols-[1fr_400px]">
-        <div className="space-y-2">
+      <div className="mt-4 grid min-w-0 gap-4 xl:grid-cols-[minmax(0,1fr)_400px]">
+        <div className="min-w-0 space-y-2">
           {rows.length === 0 ? <EmptyState title="No comments match" body="Try another view, sentiment or video filter." /> : rows.map((c) => (
             <button key={c.id} onClick={() => setSel(c.id)} className={`w-full rounded-xl border bg-card p-4 text-left ${cur?.id === c.id ? "border-primary" : ""}`}>
               <div className="flex flex-wrap items-center gap-2">

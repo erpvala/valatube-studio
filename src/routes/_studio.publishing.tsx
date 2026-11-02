@@ -18,7 +18,7 @@ import { validateSchedule } from "@/lib/schedule";
 export const Route = createFileRoute("/_studio/publishing")({
   head: pageHead("Publishing Manager", "Drafts, scheduled, published and failed content."),
   component: Publishing,
-  validateSearch: (search: Record<string, unknown>): { video?: string } => ({ video: typeof search["video"] === "string" ? search["video"] : undefined }),
+  validateSearch: (search: Record<string, unknown>): { video?: string } => typeof search["video"] === "string" ? { video: search["video"] } : {},
 });
 
 type Filter = "all" | VideoStatus;
