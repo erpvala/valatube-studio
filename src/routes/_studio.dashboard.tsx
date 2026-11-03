@@ -105,9 +105,9 @@ function Dashboard() {
       </div>
 
       <Panel title="Quick actions" className="mt-4">
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <div className="grid min-w-0 grid-cols-2 gap-2 xl:grid-cols-4">
           {[{ to: "/research", l: "Research topics", i: Lightbulb }, { to: "/scripts", l: "Write script", i: FileText }, { to: "/thumbnails", l: "Design thumbnail", i: Video }, { to: "/publishing", l: "Schedule upload", i: Send }].map((q) => (
-            <Button key={q.to} asChild variant="outline" className="h-12 justify-start"><Link to={q.to}><q.i /> {q.l}</Link></Button>
+            <Button key={q.to} asChild variant="outline" className="h-12 min-w-0 justify-start whitespace-normal"><Link to={q.to}><q.i /><span className="min-w-0">{q.l}</span></Link></Button>
           ))}
         </div>
       </Panel>
