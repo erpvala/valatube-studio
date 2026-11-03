@@ -1,4 +1,6 @@
 # Phase 01 completion audit
+- [ ] Correct tablet dashboard overflow and verify tablet viewports.
+- [ ] Deliver a browsable, module-grouped index linking all 39 full-resolution captures.
 - [x] Capture, inspect and attach major-module screenshots for the Phase 01 handover (39 captures; tablet dashboard overflow documented).
 - [ ] Verify harness TypeScript/production-build results and fix remaining errors before QA.
 - [ ] Inspect both public repositories and verify licenses from actual source.
