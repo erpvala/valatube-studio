@@ -1,4 +1,5 @@
 # Phase 01 completion audit
+- [x] Add and verify an accessible, in-page screenshot preview with filtered image navigation, focus containment/restoration, Escape, and actual-size inspection on desktop/tablet/mobile.
 - [x] Add and verify accessible capture search and module filters in the versioned screenshot index.
 - [x] Correct tablet dashboard overflow; verified five tablet sizes plus mobile/desktop with no document or quick-action overflow.
 - [x] Deliver a browsable, module-grouped index linking all 39 full-resolution captures.

@@ -19,3 +19,4 @@
 - Scheduling stores date and time together and validates against the browser clock; it never calls a publishing service.
 - Shared UI building blocks are in `src/components/app/kit.tsx`, charts in `charts.tsx`; reuse them rather than re-styling per page.
 - Dark theme is default (`html.dark`); colours come only from tokens in `src/styles.css`.
+- The standalone screenshot handover uses a native modal dialog and navigates only currently filtered captures, so offline viewing retains keyboard focus and filter context.
