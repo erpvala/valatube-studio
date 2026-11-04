@@ -1,5 +1,5 @@
 # Phase 01 completion audit
-- [ ] Add and verify accessible capture search and module filters in the versioned screenshot index.
+- [x] Add and verify accessible capture search and module filters in the versioned screenshot index.
 - [x] Correct tablet dashboard overflow; verified five tablet sizes plus mobile/desktop with no document or quick-action overflow.
 - [x] Deliver a browsable, module-grouped index linking all 39 full-resolution captures.
 - [x] Capture, inspect and attach major-module screenshots for the Phase 01 handover (39 captures; tablet dashboard overflow documented).
