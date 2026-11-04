@@ -20,3 +20,4 @@
 - Shared UI building blocks are in `src/components/app/kit.tsx`, charts in `charts.tsx`; reuse them rather than re-styling per page.
 - Dark theme is default (`html.dark`); colours come only from tokens in `src/styles.css`.
 - The standalone screenshot handover uses a native modal dialog and navigates only currently filtered captures, so offline viewing retains keyboard focus and filter context.
+- Screenshot comparison uses two independent panes from the filtered capture set; CSV exports retain relative image paths for portable offline handovers.
