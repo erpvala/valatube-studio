@@ -21,3 +21,4 @@
 - Dark theme is default (`html.dark`); colours come only from tokens in `src/styles.css`.
 - The standalone screenshot handover uses a native modal dialog and navigates only currently filtered captures, so offline viewing retains keyboard focus and filter context.
 - Screenshot comparison uses two independent panes from the filtered capture set; CSV exports retain relative image paths for portable offline handovers.
+- Standalone screenshot favorites use stable relative capture paths in browser storage, with a session-only fallback notice when storage is blocked; this keeps the offline handover frontend-only.

@@ -1,4 +1,5 @@
 # Phase 01 completion audit
+- [x] Add and verify locally saved screenshot favorites, combined filtering, reload persistence, preview/comparison/export scope, keyboard focus, mobile layout, and blocked-storage notices.
 - [x] Add and verify filtered two-image comparison and filtered-list CSV export in the versioned screenshot index (desktop, 768px tablet, 390px mobile; keyboard focus and full-resolution loading passed).
 - [x] Add and verify an accessible, in-page screenshot preview with filtered image navigation, focus containment/restoration, Escape, and actual-size inspection on desktop/tablet/mobile.
 - [x] Add and verify accessible capture search and module filters in the versioned screenshot index.
